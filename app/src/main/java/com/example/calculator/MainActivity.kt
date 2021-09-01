@@ -44,13 +44,13 @@ class MainActivity : AppCompatActivity() {
         val length=tvDisplay.length()
         if(length>0){
 
-            if(tvDisplay.text[length] =='.') decimal=false
+            if(tvDisplay.text[length-1] =='.') decimal=false
 
-            if(tvDisplay.text[length] =='x'||
-                tvDisplay.text[length] =='-'||
-                tvDisplay.text[length] =='+'||
-                tvDisplay.text[length] =='/')
-                    operator=true
+            if(tvDisplay.text[length-1] =='x'||
+                tvDisplay.text[length-1] =='-'||
+                tvDisplay.text[length-1] =='+'||
+                tvDisplay.text[length-1] =='/')
+                operator=true
             tvDisplay.text=tvDisplay.text.subSequence(0,length-1)
         }
     }
@@ -100,20 +100,20 @@ class MainActivity : AppCompatActivity() {
                 val operator=list[i]
                 val next=list[i+1] as Double
                 val prev=list[i-1] as Double
-               when(operator){
-                   'x' ->{
-                       newList.add(prev*next)
-                       size=i+1
-                   }
-                   '/'->{
-                       newList.add(prev/next)
-                       size=i+1
-                   }
-                   else ->{
-                       newList.add(prev)
-                       newList.add(operator)
-                   }
-               }
+                when(operator){
+                    'x' ->{
+                        newList.add(prev*next)
+                        size=i+1
+                    }
+                    '/'->{
+                        newList.add(prev/next)
+                        size=i+1
+                    }
+                    else ->{
+                        newList.add(prev)
+                        newList.add(operator)
+                    }
+                }
 
             }
             if(i>size){
